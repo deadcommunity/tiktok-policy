@@ -1,4 +1,542 @@
-<h1>Gizlilik Politikası</h1>
-<p>Bu uygulama TikTok API'si aracılığıyla video yükler.
-Toplanan veriler: TikTok kullanıcı ID'si ve erişim token'ı.
-Bu veriler yalnızca video yükleme amacıyla kullanılır ve saklanmaz.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — DeadCommunity</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d14;
+      --surface: #16161f;
+      --border: #2a2a3d;
+      --accent: #7c5cfc;
+      --accent2: #5cbbfc;
+      --text: #e8e8f0;
+      --muted: #7a7a9a;
+      --radius: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(13,13,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), #fc5c7d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 0.25rem; }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: color .2s, background .2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text);
+      background: var(--border);
+    }
+
+    .page-header {
+      position: relative;
+      overflow: hidden;
+      padding: 5rem 2rem 3.5rem;
+      text-align: center;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 50% -5%, rgba(92,187,252,.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .page-header .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(92,187,252,.1);
+      border: 1px solid rgba(92,187,252,.3);
+      color: #7dd3fc;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .35rem .9rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff 40%, #7dd3fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: .75rem;
+    }
+
+    .page-header .updated {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .content-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .toc h3 {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .toc ol {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+      counter-reset: toc;
+    }
+
+    .toc ol li { counter-increment: toc; }
+
+    .toc ol li::before {
+      content: counter(toc) ". ";
+      color: var(--accent2);
+      font-weight: 600;
+    }
+
+    .toc a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: .9rem;
+      opacity: .8;
+      transition: opacity .15s;
+    }
+
+    .toc a:hover { opacity: 1; color: var(--accent2); }
+
+    .doc-section {
+      margin-bottom: 2.8rem;
+      padding-top: 0.5rem;
+    }
+
+    .doc-section h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, rgba(92,187,252,.2), rgba(124,92,252,.2));
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--accent2);
+      flex-shrink: 0;
+    }
+
+    .doc-section p {
+      color: #c8c8dc;
+      margin-bottom: .9rem;
+      font-size: .95rem;
+    }
+
+    .doc-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: .9rem;
+    }
+
+    .doc-section ul li {
+      position: relative;
+      padding-left: 1.4rem;
+      color: #c8c8dc;
+      font-size: .95rem;
+      margin-bottom: .45rem;
+    }
+
+    .doc-section ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.2rem;
+      font-size: .9rem;
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: .7rem 1rem;
+      background: rgba(92,187,252,.07);
+      color: var(--accent2);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table td {
+      padding: .7rem 1rem;
+      color: #c8c8dc;
+      border-bottom: 1px solid rgba(42,42,61,.6);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .data-table tr:hover td { background: rgba(255,255,255,.02); }
+
+    .highlight-box {
+      background: rgba(92,187,252,.07);
+      border: 1px solid rgba(92,187,252,.2);
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      margin-top: 1rem;
+      color: #c8c8dc;
+      font-size: .92rem;
+    }
+
+    .highlight-box.warn {
+      background: rgba(251,191,36,.05);
+      border-color: rgba(251,191,36,.2);
+      color: #fde68a;
+    }
+
+    hr.doc-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: .15rem .55rem;
+      border-radius: 5px;
+      font-size: .75rem;
+      font-weight: 600;
+      margin-left: .4rem;
+      vertical-align: middle;
+    }
+
+    .tag-no { background: rgba(74,222,128,.1); color: #86efac; }
+    .tag-min { background: rgba(92,187,252,.1); color: #7dd3fc; }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      color: var(--muted);
+      font-size: .85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links a { padding: .4rem .6rem; font-size: .82rem; }
+      .data-table { font-size: .82rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">DeadCommunity</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="tos.html">Terms of Service</a>
+      <a href="privacy.html" class="active">Privacy Policy</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="page-badge">&#128274; Privacy</div>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: January 1, 2025</p>
+  </div>
+
+  <div class="content-wrap">
+
+    <div class="toc">
+      <h3>Table of Contents</h3>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#collect">What Data We Collect</a></li>
+        <li><a href="#tiktok-data">TikTok Data Access</a></li>
+        <li><a href="#how-we-use">How We Use Your Data</a></li>
+        <li><a href="#no-share">Data We Do NOT Share</a></li>
+        <li><a href="#storage">Data Storage & Security</a></li>
+        <li><a href="#retention">Data Retention</a></li>
+        <li><a href="#rights">Your Rights</a></li>
+        <li><a href="#third-party">Third-Party Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </div>
+
+    <div class="doc-section" id="overview">
+      <h2><span class="section-num">1</span> Overview</h2>
+      <p>DeadCommunity ("we", "us", "our") operates a personal content automation platform. We are committed to protecting your privacy. This Privacy Policy explains what information we collect, how it is used, and your rights regarding that information.</p>
+      <div class="highlight-box">
+        We collect the minimum data necessary to operate the Service. We do not sell, rent, or trade your personal data to any third party.
+      </div>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="collect">
+      <h2><span class="section-num">2</span> What Data We Collect</h2>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Purpose</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TikTok OAuth Access Token</td>
+            <td>Authenticate API requests to publish videos</td>
+            <td><span class="tag tag-min">Minimal</span></td>
+          </tr>
+          <tr>
+            <td>TikTok Refresh Token</td>
+            <td>Maintain session without re-authentication</td>
+            <td><span class="tag tag-min">Minimal</span></td>
+          </tr>
+          <tr>
+            <td>TikTok User ID / Display Name</td>
+            <td>Identify the connected TikTok account</td>
+            <td><span class="tag tag-min">Minimal</span></td>
+          </tr>
+          <tr>
+            <td>Video Content & Metadata</td>
+            <td>Story text, audio, captions used to build videos</td>
+            <td><span class="tag tag-min">Local only</span></td>
+          </tr>
+          <tr>
+            <td>Passwords / Payment Info</td>
+            <td>Not applicable</td>
+            <td><span class="tag tag-no">Not collected</span></td>
+          </tr>
+          <tr>
+            <td>Location / Device Data</td>
+            <td>Not applicable</td>
+            <td><span class="tag tag-no">Not collected</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="tiktok-data">
+      <h2><span class="section-num">3</span> TikTok Data Access</h2>
+      <p>When you authorize our application via TikTok's OAuth 2.0 flow, we request the following scopes:</p>
+      <ul>
+        <li><strong>user.info.basic</strong> — read your public TikTok profile (username, avatar)</li>
+        <li><strong>video.upload</strong> — upload video files to your TikTok account</li>
+        <li><strong>video.publish</strong> — publish uploaded videos directly to your profile</li>
+      </ul>
+      <p>We do not request access to your TikTok DMs, follower list, private data, or any scope beyond what is listed above.</p>
+      <div class="highlight-box">
+        You can revoke access at any time: TikTok App → Settings &amp; Privacy → Security → Manage app permissions.
+      </div>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="how-we-use">
+      <h2><span class="section-num">4</span> How We Use Your Data</h2>
+      <p>Data collected is used exclusively to:</p>
+      <ul>
+        <li>Authenticate and authorize API requests on your behalf</li>
+        <li>Upload and publish video content to your TikTok account</li>
+        <li>Refresh expired access tokens automatically</li>
+        <li>Display the connected account name in the local application interface</li>
+      </ul>
+      <p>We do not use your data for advertising, analytics profiling, or any purpose unrelated to operating the Service.</p>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="no-share">
+      <h2><span class="section-num">5</span> Data We Do NOT Share</h2>
+      <p>We do not:</p>
+      <ul>
+        <li>Sell or rent your personal data to third parties</li>
+        <li>Share your TikTok tokens or account data with any external service</li>
+        <li>Use your content for training AI models</li>
+        <li>Transmit your data to advertising networks</li>
+        <li>Store your data on cloud servers — all data remains on your local machine</li>
+      </ul>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="storage">
+      <h2><span class="section-num">6</span> Data Storage &amp; Security</h2>
+      <p>All sensitive data (OAuth tokens, API keys) is stored locally in a <code style="background:var(--surface);padding:.1rem .4rem;border-radius:5px;font-size:.88rem;">.env</code> file on the user's own machine. We do not operate external servers or databases that hold your personal data.</p>
+      <p>Security measures include:</p>
+      <ul>
+        <li>OAuth 2.0 with PKCE (S256) for all TikTok authorization flows</li>
+        <li>Tokens are stored only in the local environment file, not in source code</li>
+        <li>HTTPS used for all API communication</li>
+        <li>No third-party analytics or tracking scripts on this website</li>
+      </ul>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="retention">
+      <h2><span class="section-num">7</span> Data Retention</h2>
+      <p>OAuth tokens are retained locally until you manually delete your <code style="background:var(--surface);padding:.1rem .4rem;border-radius:5px;font-size:.88rem;">.env</code> file or revoke access through TikTok. We do not retain copies of your tokens on any server.</p>
+      <p>Published video files and metadata are stored locally in the application's output directories. You may delete them at any time.</p>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="rights">
+      <h2><span class="section-num">8</span> Your Rights</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> — request information about what data we hold</li>
+        <li><strong>Deletion</strong> — request deletion of your data</li>
+        <li><strong>Revocation</strong> — disconnect the app from TikTok at any time</li>
+        <li><strong>Portability</strong> — export all local data (it is already on your own machine)</li>
+      </ul>
+      <p>Since all data is stored locally on your own device, you have full control at all times without needing to contact us.</p>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="third-party">
+      <h2><span class="section-num">9</span> Third-Party Services</h2>
+      <p>The Service interacts with the following third-party APIs:</p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Purpose</th>
+            <th>Privacy Policy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>TikTok for Developers</td>
+            <td>Video publishing API</td>
+            <td>developers.tiktok.com</td>
+          </tr>
+          <tr>
+            <td>OpenAI (optional)</td>
+            <td>AI-generated captions &amp; hashtags</td>
+            <td>openai.com/privacy</td>
+          </tr>
+          <tr>
+            <td>Google Gemini (optional)</td>
+            <td>AI-generated captions &amp; hashtags</td>
+            <td>policies.google.com</td>
+          </tr>
+          <tr>
+            <td>Ollama (optional, local)</td>
+            <td>Local AI inference — no data leaves device</td>
+            <td>ollama.com</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Each third-party service has its own privacy policy. We recommend reviewing them if you have concerns.</p>
+    </div>
+
+    <hr class="doc-divider" />
+
+    <div class="doc-section" id="contact">
+      <h2><span class="section-num">10</span> Contact</h2>
+      <p>If you have any questions or concerns about this Privacy Policy or our data practices, please reach out:</p>
+      <div class="highlight-box">
+        GitHub: <a href="https://github.com/deadcommunity" style="color:#7dd3fc; text-decoration:none;">github.com/deadcommunity</a>
+      </div>
+      <p style="margin-top:1rem;">We will respond to privacy requests as promptly as possible.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="tos.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <p>&copy; 2025 DeadCommunity. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
